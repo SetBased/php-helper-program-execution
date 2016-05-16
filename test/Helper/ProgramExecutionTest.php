@@ -2,7 +2,6 @@
 //----------------------------------------------------------------------------------------------------------------------
 namespace SetBased\Helper\Test;
 
-use SetBased\Exception\RuntimeException;
 use SetBased\Helper\ProgramExecution;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -46,7 +45,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with failed command.
    *
-   * @expectedException RuntimeException
+   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec1ExitStatusFail()
   {
@@ -126,7 +125,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with failed command.
    *
-   * @expectedException RuntimeException
+   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec2ExitStatusFail()
   {

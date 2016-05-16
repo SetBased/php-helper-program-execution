@@ -3,7 +3,6 @@
 namespace SetBased\Helper;
 
 use SetBased\Exception\ProgramExecutionException;
-use SetBased\Exception\RuntimeException;
 
 //----------------------------------------------------------------------------------------------------------------------
 /**
@@ -55,7 +54,7 @@ class ProgramExecution
 
     if ($ignoreStdErr)
     {
-      $command .= '2>&/dev/null';
+      $command .= ' 2> /dev/null';
     }
     else
     {
@@ -112,7 +111,7 @@ class ProgramExecution
     }
     else
     {
-      $command .= ' >& ';
+      $command .= ' 2> ';
       $command .= escapeshellarg($stderr);
     }
 
