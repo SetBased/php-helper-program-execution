@@ -5,6 +5,7 @@
     "Program",
     "Execution"
   ],
+  "license": "MIT",
   "require": {
     "php": ">=5.4"
   },
