@@ -6,8 +6,7 @@
     "Execution"
   ],
   "require": {
-    "php": ">=5.4",
-    "setbased/exception": "*"
+    "php": ">=5.4"
   },
   "require-dev": {
     "phpunit/phpunit": "*"
