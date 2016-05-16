@@ -1,0 +1,28 @@
+{
+  "name": "setbased/helper-program-execution",
+  "description": "Program Execution Helper",
+  "keyword": [
+    "Program",
+    "Execution"
+  ],
+  "require": {
+    "php": ">=5.4",
+    "setbased/exception": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SetBased\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SetBased\\Test\\": "test"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
