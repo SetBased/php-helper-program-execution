@@ -42,15 +42,12 @@ class ProgramExecution
    * @param  bool      $ignoreStdErr  The standard error is normally redirected to standard output. If true standard
    *                                  error is ignored (i.e. redirected to /dev/null).
    *
-   * @return array<null|array|integer> An array with two elements: the output of the command as an array of lines and
-   *                                   the return status of the command.
+   * @return array<null|array|integer> An array with two elements: the output of the external program as an array of
+   *                                   lines and the return status of the external program.
    */
   public static function exec1($command, $returnVars = [0], $ignoreStdErr = false)
   {
-    if (is_array($command))
-    {
-      $command = self::escape($command);
-    }
+    $command = self::escape($command);
 
     if ($ignoreStdErr)
     {
@@ -85,15 +82,11 @@ class ProgramExecution
    *                                this array an exception will be thrown. An empty array or null will allow all
    *                                return statuses.
    *
-   * @return int
+   * @return int The exit status of the external program.
    */
-
   public static function exec2($command, $stdout = null, $stderr = null, $returnVars = [0])
   {
-    if (is_array($command))
-    {
-      $command = self::escape($command);
-    }
+    $command = self::escape($command);
 
     if ($stdout===null)
     {
