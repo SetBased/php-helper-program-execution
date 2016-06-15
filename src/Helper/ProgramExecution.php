@@ -14,7 +14,7 @@ class ProgramExecution
   /**
    * Returns a popper escaped command.
    *
-   * @param string[] $args The command and ist arguments.
+   * @param string[] $args The command and its arguments.
    *
    * @return string
    */
