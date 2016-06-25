@@ -82,9 +82,9 @@ class ProgramExecution
    *                                redirected to /dev/null.
    * @param null|string $stderr     The filename to redirect the standard error. If null the standard error is
    *                                redirected to the standard output. Use '/dev/null' to ignore standard error.
-   * @param int[]       $returnVars The allowed return statuses. If the return status of the command is not in
-   *                                this array an exception will be thrown. An empty array or null will allow all
-   *                                return statuses.
+   * @param null|int[]  $returnVars The allowed return statuses. If the return status of the command is not in
+   *                                this array an exception will be thrown. Null will allow all return statuses and an
+   *                                empty array will throw an exception always.
    *
    * @return int The exit status of the external program.
    *
@@ -116,7 +116,7 @@ class ProgramExecution
 
     exec($command, $output, $return_var);
 
-    if (!empty($returnVars) && !in_array($return_var, $returnVars))
+    if (is_array($returnVars) && !in_array($return_var, $returnVars))
     {
       throw new ProgramExecutionException($command, $return_var, $output);
     }
