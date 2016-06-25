@@ -121,7 +121,7 @@ class ProgramExecution
       throw new ProgramExecutionException($command, $return_var, $output);
     }
 
-    return $return_var;
+    return (int)$return_var;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
