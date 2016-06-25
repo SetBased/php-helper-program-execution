@@ -9,7 +9,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Test with any allowed exit statuses.
+   * Test with failed command and any allowed exit statuses.
    */
   public function testExec1AnyExitStatus1()
   {
@@ -20,7 +20,9 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Test with any allowed exit statuses.
+   * Test with failed command and empty allowed exit statuses.
+   *
+   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec1AnyExitStatus2()
   {
