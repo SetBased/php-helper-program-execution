@@ -37,6 +37,8 @@ class ProgramExecutionException extends \RuntimeException
    * @param string   $command The executed command.
    * @param int      $status  The exit status of the executed command.
    * @param string[] $output  The output of the executed command.
+   *
+   * @api
    */
   public function __construct($command, $status, $output)
   {
@@ -52,6 +54,8 @@ class ProgramExecutionException extends \RuntimeException
    * Returns the executed command.
    *
    * @return string
+   *
+   * @api
    */
   public function getCommand()
   {
@@ -63,6 +67,8 @@ class ProgramExecutionException extends \RuntimeException
    * Returns the output of the executed command.
    *
    * @return \string[]
+   *
+   * @api
    */
   public function getOutput()
   {
@@ -74,6 +80,8 @@ class ProgramExecutionException extends \RuntimeException
    * Returns the exits status of the command.
    *
    * @return int
+   *
+   * @api
    */
   public function getStatus()
   {

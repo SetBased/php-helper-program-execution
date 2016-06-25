@@ -17,6 +17,8 @@ class ProgramExecution
    * @param string[] $args The command and its arguments.
    *
    * @return string
+   *
+   * @api
    */
   public static function escape($args)
   {
@@ -44,6 +46,8 @@ class ProgramExecution
    *
    * @return array<null|array|integer> An array with two elements: the output of the external program as an array of
    *                                   lines and the return status of the external program.
+   *
+   * @api
    */
   public static function exec1($command, $returnVars = [0], $ignoreStdErr = false)
   {
@@ -83,6 +87,8 @@ class ProgramExecution
    *                                return statuses.
    *
    * @return int The exit status of the external program.
+   *
+   * @api
    */
   public static function exec2($command, $stdout = null, $stderr = null, $returnVars = [0])
   {
