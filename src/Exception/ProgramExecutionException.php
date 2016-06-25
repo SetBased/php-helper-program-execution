@@ -34,9 +34,9 @@ class ProgramExecutionException extends \RuntimeException
   /**
    * Object constructor.
    *
-   * @param string   $command The executed command.
-   * @param int      $status  The exit status of the executed command.
-   * @param string[] $output  The output of the executed command.
+   * @param string        $command The executed command.
+   * @param int           $status  The exit status of the executed command.
+   * @param null|string[] $output  The output of the executed command.
    *
    * @api
    */
@@ -46,7 +46,7 @@ class ProgramExecutionException extends \RuntimeException
 
     $this->command = $command;
     $this->status  = $status;
-    $this->output  = $output;
+    $this->output  = ($output==null) ? [] : $output;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ class ProgramExecutionException extends \RuntimeException
   /**
    * Returns the output of the executed command.
    *
-   * @return \string[]
+   * @return string[]
    *
    * @api
    */
