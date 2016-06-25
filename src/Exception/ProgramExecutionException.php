@@ -92,7 +92,8 @@ class ProgramExecutionException extends \RuntimeException
    */
   private function message($command, $status, $output)
   {
-    $message = sprintf('Command exited with status %s', $status);
+    $message = sprintf('Command below exited with status %s:', $status);
+    $message .= PHP_EOL;
     $message .= $command;
 
     if (!empty($output))
