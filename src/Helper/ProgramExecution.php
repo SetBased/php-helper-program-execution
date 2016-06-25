@@ -38,9 +38,9 @@ class ProgramExecution
    *
    * @param string[]   $command       The command that will be executed. This method will compose the command executed
    *                                  by exec with proper escaping.
-   * @param int[]|null $returnVars    The allowed return statuses. If the return status of the command is not in this
-   *                                  array an exception will be thrown. An empty array or null will allow all return
-   *                                  statuses.
+   * @param int[]|null $returnVars    The allowed return statuses. If the return status of the command is not in
+   *                                  this array an exception will be thrown. Null will allow all return statuses and an
+   *                                  empty array will throw an exception always.
    * @param  bool      $ignoreStdErr  The standard error is normally redirected to standard output. If true standard
    *                                  error is ignored (i.e. redirected to /dev/null).
    *
@@ -64,7 +64,7 @@ class ProgramExecution
 
     exec($command, $output, $return_var);
 
-    if (!empty($returnVars) && !in_array($return_var, $returnVars))
+    if (is_array($returnVars) && !in_array($return_var, $returnVars))
     {
       throw new ProgramExecutionException($command, $return_var, $output);
     }
