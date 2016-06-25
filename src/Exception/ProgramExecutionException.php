@@ -92,9 +92,9 @@ class ProgramExecutionException extends \RuntimeException
   /**
    * Composes the exception message.
    *
-   * @param string   $command The executed command.
-   * @param int      $status  The exit status of the executed command.
-   * @param string[] $output  The output of the executed command.
+   * @param string        $command The executed command.
+   * @param int           $status  The exit status of the executed command.
+   * @param null|string[] $output  The output of the executed command.
    *
    * @return string
    */
