@@ -1,7 +1,6 @@
-.idea/
-bin/phpunit
-build/
-composer.lock
+/.idea/
+/bin/
+/composer.lock
 /test/coverage.xml
 /test/report/
-vendor/
+/vendor/
