@@ -1,8 +1,8 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+declare(strict_types=1);
+
 namespace SetBased\Exception;
 
-//----------------------------------------------------------------------------------------------------------------------
 /**
  * Exceptions for failed program executions.
  */
@@ -41,7 +41,7 @@ class ProgramExecutionException extends \RuntimeException
    * @since 1.0.0
    * @api
    */
-  public function __construct($command, $status, $output)
+  public function __construct(string $command, int $status, ?array $output)
   {
     parent::__construct(self::message($command, $status, $output));
 
@@ -59,7 +59,7 @@ class ProgramExecutionException extends \RuntimeException
    * @since 1.0.0
    * @api
    */
-  public function getCommand()
+  public function getCommand(): string
   {
     return $this->command;
   }
@@ -73,7 +73,7 @@ class ProgramExecutionException extends \RuntimeException
    * @since 1.0.0
    * @api
    */
-  public function getOutput()
+  public function getOutput(): array
   {
     return $this->output;
   }
@@ -87,7 +87,7 @@ class ProgramExecutionException extends \RuntimeException
    * @since 1.0.0
    * @api
    */
-  public function getStatus()
+  public function getStatus(): int
   {
     return $this->status;
   }
@@ -102,7 +102,7 @@ class ProgramExecutionException extends \RuntimeException
    *
    * @return string
    */
-  private function message($command, $status, $output)
+  private function message(string $command, int $status, ?array $output): string
   {
     $message = sprintf('Command below exited with status %s:', $status);
     $message .= PHP_EOL;

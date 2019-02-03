@@ -1,17 +1,21 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+declare(strict_types=1);
+
 namespace SetBased\Helper\Test;
 
+use PHPUnit\Framework\TestCase;
 use SetBased\Helper\ProgramExecution;
 
-//----------------------------------------------------------------------------------------------------------------------
-class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
+/**
+ * Test cases for ProgramExecution.
+ */
+class ProgramExecutionTest extends TestCase
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Test with failed command and any allowed exit statuses.
    */
-  public function testExec1AnyExitStatus1()
+  public function testExec1AnyExitStatus1(): void
   {
     $ret = ProgramExecution::exec1(['false'], null);
 
@@ -24,7 +28,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
    *
    * @expectedException \SetBased\Exception\ProgramExecutionException
    */
-  public function testExec1AnyExitStatus2()
+  public function testExec1AnyExitStatus2(): void
   {
     $ret = ProgramExecution::exec1(['false'], []);
 
@@ -35,7 +39,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with array as command.
    */
-  public function testExec1BasicUsage()
+  public function testExec1BasicUsage(): void
   {
     list($output, $status) = ProgramExecution::exec1(['echo', 'hello, world!']);
 
@@ -49,7 +53,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
    *
    * @expectedException \SetBased\Exception\ProgramExecutionException
    */
-  public function testExec1ExitStatusFail()
+  public function testExec1ExitStatusFail(): void
   {
     ProgramExecution::exec1(['cmp', __FILE__, 'foogazy'], [0, 1]);
   }
@@ -58,7 +62,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with ignore STDERR.
    */
-  public function testExec1IgnoreStdErr()
+  public function testExec1IgnoreStdErr(): void
   {
     $tmp = ProgramExecution::exec1(['ls', 'foogazy'], null, false);
     $this->assertNotEmpty($tmp[0]);
@@ -71,7 +75,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with multiple allowed exit statuses.
    */
-  public function testExec1MultipleExitStatuses()
+  public function testExec1MultipleExitStatuses(): void
   {
     $ret = ProgramExecution::exec1(['cmp', __FILE__, __DIR__.'/../bootstrap.php'], [0, 1]);
 
@@ -82,7 +86,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with tricky command.
    */
-  public function testExec1TrickyCommand()
+  public function testExec1TrickyCommand(): void
   {
     $strings = ['; rm -rf .. &', '"', "'"];
 
@@ -99,7 +103,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with failed command and any exit status
    */
-  public function testExec2AnyExitStatusFail()
+  public function testExec2AnyExitStatusFail(): void
   {
     $ret = ProgramExecution::exec2(['cmp', __FILE__, 'foogazy'], null, 'error.txt', null);
 
@@ -113,7 +117,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with array as command.
    */
-  public function testExec2BasicUsage()
+  public function testExec2BasicUsage(): void
   {
     $ret = ProgramExecution::exec2(['echo', 'hello, world!'], 'hello.txt');
 
@@ -129,7 +133,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
    *
    * @expectedException \SetBased\Exception\ProgramExecutionException
    */
-  public function testExec2ExitStatusFail()
+  public function testExec2ExitStatusFail(): void
   {
     ProgramExecution::exec2(['cmp', __FILE__, 'foogazy'], null, '/dev/null');
   }
@@ -138,7 +142,7 @@ class ProgramExecutionTest extends \PHPUnit_Framework_TestCase
   /**
    * Test with tricky command.
    */
-  public function testExec2TrickyCommand()
+  public function testExec2TrickyCommand(): void
   {
     $strings = ['; rm -rf .. &', '"', "'"];
 

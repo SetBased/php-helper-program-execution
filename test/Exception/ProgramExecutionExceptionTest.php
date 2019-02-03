@@ -1,17 +1,21 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+declare(strict_types=1);
+
 namespace SetBased\Test\Exception;
 
+use PHPUnit\Framework\TestCase;
 use SetBased\Exception\ProgramExecutionException;
 
-//----------------------------------------------------------------------------------------------------------------------
-class ProgramExecutionExceptionTest extends \PHPUnit_Framework_TestCase
+/**
+ * Test cases for ProgramExecutionException.
+ */
+class ProgramExecutionExceptionTest extends TestCase
 {
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Test getters.
    */
-  public function test1()
+  public function test1(): void
   {
     $e = new ProgramExecutionException('command', 123, ['hello', 'world']);
 

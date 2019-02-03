@@ -1,30 +1,30 @@
 {
   "name": "setbased/helper-program-execution",
   "description": "Program Execution Helper",
-  "keyword": [
+  "keywords": [
     "Program",
     "Execution"
   ],
   "license": "MIT",
   "require": {
-    "php": ">=5.4"
+    "php": ">=7.1"
   },
   "require-dev": {
-    "phing/phing": "2.*",
-    "phpunit/phpunit": "4.* || 5.*",
-    "setbased/phing-extensions": "2.*"
+    "phing/phing": "^2.0.0",
+    "phpunit/phpunit": "^6.0.0",
+    "setbased/phing-extensions": "^2.0.0"
   },
   "autoload": {
     "psr-4": {
-      "SetBased\\": "src"
+      "SetBased\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SetBased\\Test\\": "test"
+      "SetBased\\Test\\": "test/"
     }
   },
   "config": {
-    "bin-dir": "bin"
+    "bin-dir": "bin/"
   }
 }

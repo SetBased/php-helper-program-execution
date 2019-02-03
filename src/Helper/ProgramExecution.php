@@ -1,10 +1,10 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+declare(strict_types=1);
+
 namespace SetBased\Helper;
 
 use SetBased\Exception\ProgramExecutionException;
 
-//----------------------------------------------------------------------------------------------------------------------
 /**
  * A helper class for program execution.
  */
@@ -21,7 +21,7 @@ class ProgramExecution
    * @since 1.0.0
    * @api
    */
-  public static function escape($args)
+  public static function escape(array $args): string
   {
     $command = '';
     foreach ($args as $arg)
@@ -39,7 +39,7 @@ class ProgramExecution
    *
    * @param string[]   $command       The command that will be executed. This method will compose the command executed
    *                                  by exec with proper escaping.
-   * @param int[]|null $returnVars    The allowed return statuses. If the return status of the command is not in
+   * @param int[]|null $statuses      The allowed return statuses. If the return status of the command is not in
    *                                  this array an exception will be thrown. Null will allow all return statuses and an
    *                                  empty array will throw an exception always.
    * @param  bool      $ignoreStdErr  The standard error is normally redirected to standard output. If true standard
@@ -51,7 +51,7 @@ class ProgramExecution
    * @since 1.0.0
    * @api
    */
-  public static function exec1($command, $returnVars = [0], $ignoreStdErr = false)
+  public static function exec1(array $command, ?array $statuses = [0], bool $ignoreStdErr = false): array
   {
     $command = self::escape($command);
 
@@ -64,14 +64,14 @@ class ProgramExecution
       $command .= ' 2>&1';
     }
 
-    exec($command, $output, $return_var);
+    exec($command, $output, $status);
 
-    if (is_array($returnVars) && !in_array($return_var, $returnVars))
+    if (is_array($statuses) && !in_array($status, $statuses))
     {
-      throw new ProgramExecutionException($command, $return_var, $output);
+      throw new ProgramExecutionException($command, $status, $output);
     }
 
-    return [$output, $return_var];
+    return [$output, $status];
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -80,11 +80,11 @@ class ProgramExecution
    *
    * @param string[]    $command    The command that will be executed. This method will compose the command
    *                                executed by exec with proper escaping.
-   * @param null|string $stdout     The filename to redirect the standard output. If null the standard output is
+   * @param string|null $stdout     The filename to redirect the standard output. If null the standard output is
    *                                redirected to /dev/null.
-   * @param null|string $stderr     The filename to redirect the standard error. If null the standard error is
+   * @param string|null $stderr     The filename to redirect the standard error. If null the standard error is
    *                                redirected to the standard output. Use '/dev/null' to ignore standard error.
-   * @param null|int[]  $returnVars The allowed return statuses. If the return status of the command is not in
+   * @param int[]|null  $statuses   The allowed return statuses. If the return status of the command is not in
    *                                this array an exception will be thrown. Null will allow all return statuses and an
    *                                empty array will throw an exception always.
    *
@@ -93,7 +93,10 @@ class ProgramExecution
    * @since 1.0.0
    * @api
    */
-  public static function exec2($command, $stdout = null, $stderr = null, $returnVars = [0])
+  public static function exec2(array $command,
+                               ?string $stdout = null,
+                               ?string $stderr = null,
+                               ?array $statuses = [0]): int
   {
     $command = self::escape($command);
 
@@ -117,14 +120,14 @@ class ProgramExecution
       $command .= escapeshellarg($stderr);
     }
 
-    exec($command, $output, $return_var);
+    exec($command, $output, $status);
 
-    if (is_array($returnVars) && !in_array($return_var, $returnVars))
+    if (is_array($statuses) && !in_array($status, $statuses))
     {
-      throw new ProgramExecutionException($command, $return_var, $output);
+      throw new ProgramExecutionException($command, $status, $output);
     }
 
-    return (int)$return_var;
+    return $status;
   }
 
   //--------------------------------------------------------------------------------------------------------------------
