@@ -31,3 +31,23 @@
 </tr>
 </tbody>
 </table>
+
+Manual
+======
+
+
+
+Installing
+==========
+
+Program Execution Helper can be installed using Composer:
+```sh
+composer require setbased/helper-program-execution
+```
+
+License
+=======
+
+This project is licensed under the terms of the MIT license.
+
+

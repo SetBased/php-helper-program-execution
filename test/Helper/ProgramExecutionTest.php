@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace SetBased\Helper\Test;
 
 use PHPUnit\Framework\TestCase;
+use SetBased\Exception\ProgramExecutionException;
 use SetBased\Helper\ProgramExecution;
 
 /**
@@ -25,12 +26,10 @@ class ProgramExecutionTest extends TestCase
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Test with failed command and empty allowed exit statuses.
-   *
-   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec1AnyExitStatus2(): void
   {
-    $ret = ProgramExecution::exec1(['false'], []);
+    $ret = ProgramExecution::exec1(['false'], null);
 
     $this->assertSame(1, $ret[1]);
   }
@@ -41,7 +40,7 @@ class ProgramExecutionTest extends TestCase
    */
   public function testExec1BasicUsage(): void
   {
-    list($output, $status) = ProgramExecution::exec1(['echo', 'hello, world!']);
+    [$output, $status] = ProgramExecution::exec1(['echo', 'hello, world!']);
 
     $this->assertSame(0, $status);
     $this->assertSame($output, ['hello, world!']);
@@ -50,11 +49,10 @@ class ProgramExecutionTest extends TestCase
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Test with failed command.
-   *
-   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec1ExitStatusFail(): void
   {
+    $this->expectException(ProgramExecutionException::class);
     ProgramExecution::exec1(['cmp', __FILE__, 'foogazy'], [0, 1]);
   }
 
@@ -92,7 +90,7 @@ class ProgramExecutionTest extends TestCase
 
     foreach ($strings as $string)
     {
-      list($output, $status) = ProgramExecution::exec1(['echo', $string]);
+      [$output, $status] = ProgramExecution::exec1(['echo', $string]);
 
       $this->assertSame(0, $status);
       $this->assertSame($string, $output[0]);
@@ -130,11 +128,10 @@ class ProgramExecutionTest extends TestCase
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Test with failed command.
-   *
-   * @expectedException \SetBased\Exception\ProgramExecutionException
    */
   public function testExec2ExitStatusFail(): void
   {
+    $this->expectException(ProgramExecutionException::class);
     ProgramExecution::exec2(['cmp', __FILE__, 'foogazy'], null, '/dev/null');
   }
 
