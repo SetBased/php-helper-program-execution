@@ -22,7 +22,7 @@
 <a href="https://packagist.org/packages/setbased/helper-program-execution"><img src="https://poser.pugx.org/setbased/helper-program-execution/v/stable" alt="Latest Stable Version"/></a><br/>
 </td>
 <td>
-<a href="https://github.com/SetBased/php-helper-program-execution/actions/workflows/unit.yml"><img src="https://github.com/SetBased/helper-program-execution/actions/workflows/unit.yml/badge.svg" alt="Build Status"/></a><br/>
+<a href="https://github.com/SetBased/php-helper-program-execution/actions/workflows/unit.yml"><img src="https://github.com/SetBased/php-helper-program-execution/actions/workflows/unit.yml/badge.svg" alt="Build Status"/></a><br/>
 <a href="https://codecov.io/gh/SetBased/php-helper-program-execution"><img src="https://codecov.io/gh/SetBased/helper-program-execution/branch/master/graph/badge.svg" alt="Code Coverage"/></a>
 </td>
 <td>
